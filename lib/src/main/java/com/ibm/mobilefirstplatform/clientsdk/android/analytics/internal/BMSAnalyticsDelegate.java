@@ -46,6 +46,11 @@ public class BMSAnalyticsDelegate implements AnalyticsDelegate{
     }
 
     @Override
+    public void logLocation() {
+        BMSAnalytics.logLocation();
+    }
+
+    @Override
     public void setUserIdentity(String username) {
         BMSAnalytics.setUserIdentity(username);
     }
