@@ -13,10 +13,12 @@
 
 package com.ibm.mobilefirstplatform.clientsdk.android.analytics.internal;
 
+
 import okhttp3.Interceptor;
 import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
+
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -24,7 +26,9 @@ import org.json.JSONObject;
 import java.io.IOException;
 import java.util.UUID;
 
+
 public class NetworkLoggingInterceptor implements Interceptor{
+
     @Override public okhttp3.Response intercept(Interceptor.Chain chain) throws IOException {
         Request request = chain.request();
 

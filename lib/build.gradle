@@ -21,16 +21,17 @@ apply from: 'jacoco.gradle'
 
 ext {
     ANALYTICS_VERSION_VAR_NAME = 'BMS_ANALYTICS_SDK_VERSION'
-    ANALYTICS_SDK_VERSION = '1.1.13-SNAPSHOT'
+    ANALYTICS_SDK_VERSION = '1.2.0-SNAPSHOT'
+
 }
 
 android {
     compileSdkVersion 24
-    buildToolsVersion "24.0.2"
+    buildToolsVersion '24.0.2'
 
     defaultConfig {
         minSdkVersion 15
-        targetSdkVersion 24
+        targetSdkVersion 25
         versionCode 1
         versionName "1.0"
     }
@@ -52,6 +53,11 @@ android {
             include '**/*Test.class'
         }
     }
+
+    lintOptions {
+        abortOnError false
+    }
+
 }
 
 dependencies {
@@ -62,13 +68,14 @@ dependencies {
     testCompile 'org.robolectric:shadows-httpclient:3.0'
     testCompile 'com.squareup.okhttp3:mockwebserver:3.9.0'
     testCompile 'org.json:json:20160810'
+    compile 'com.google.android.gms:play-services-location:10.0.1'
 }
 
 task createPropertiesFile() {
     def prop = new Properties()
     def propFile = new File("${project.projectDir}/src/main/resources/sdk.properties");
 
-    if(propFile.getParentFile() != null && !propFile.getParentFile().exists()){
+    if (propFile.getParentFile() != null && !propFile.getParentFile().exists()) {
         propFile.getParentFile().mkdirs()
     }
 
@@ -174,8 +181,8 @@ uploadArchives {
                 authentication(userName: getRepositoryUsername(), password: getRepositoryPassword())
             }
 
-            pom.groupId='com.ibm.mobilefirstplatform.clientsdk.android'
-            pom.artifactId='analytics'
+            pom.groupId = 'com.ibm.mobilefirstplatform.clientsdk.android'
+            pom.artifactId = 'analytics'
             pom.version = getVersion()
 
             pom.project {
