@@ -41,6 +41,8 @@ task jacocoTestReport(type: JacocoCustomResport) {
                        'android/**/*.*',
                        '**/BuildConfig.*',
                        '**/Manifest*.*'
+                       '**/MFPAnalyticsLocationListener.class'
+                       '**/UIActivity.class'
             ]
     )
 
