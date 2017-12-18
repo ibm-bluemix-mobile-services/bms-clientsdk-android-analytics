@@ -75,7 +75,7 @@ public class BMSAnalytics {
     public static MFPAnalyticsLocationListener locationService = null;
 
 
-    protected static String DEFAULT_USER_ID;
+    protected static String DEFAULT_USER_ID="";
 
     public static final String CATEGORY = "$category";
     public static final String TIMESTAMP_KEY = "$timestamp";
@@ -257,8 +257,8 @@ public class BMSAnalytics {
 
         try {
             metadata.put(CATEGORY, LOG_LOCATION_KEY);
-            metadata.put(LATITUDE_KEY,locationService.getLatitude());
-            metadata.put(LONGITUDE_KEY,locationService.getLongitude());
+            if(locationService != null) metadata.put(LATITUDE_KEY,locationService.getLatitude());
+            if(locationService != null) metadata.put(LONGITUDE_KEY,locationService.getLongitude());
             metadata.put(TIMESTAMP_KEY, (new Date()).getTime());
             metadata.put(APP_SESSION_ID_KEY, MFPAnalyticsActivityLifecycleListener.getAppSessionID());
             metadata.put(USER_ID_KEY,hashedUserID);
