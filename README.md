@@ -8,6 +8,9 @@
 
 ##Release Notes:
 
+###1.2.0
+- Added location for log recording
+
 ###1.1.12
 - Updated okhttp version from 2.7.4 to 3.9.0 
 
