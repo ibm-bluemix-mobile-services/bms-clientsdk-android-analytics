@@ -15,7 +15,7 @@ import android.app.Application;
 import android.content.Context;
 import android.os.Bundle;
 import android.provider.Settings;
-import android.util.Log;
+
 
 import com.ibm.mobilefirstplatform.clientsdk.android.analytics.api.Analytics;
 import com.ibm.mobilefirstplatform.clientsdk.android.core.api.ResponseListener;
@@ -103,7 +103,6 @@ public class BMSAnalytics {
     static public void init(Application app, String applicationName, String clientApiKey, boolean hasUserContext, boolean collectLocation, Analytics.DeviceEvent... contexts) {
 
         Context context = app.getApplicationContext();
-        locationService = MFPAnalyticsLocationListener.getInstance(context);
 
         //Initialize LogPersister
         LogPersister.setLogLevel(Logger.getLogLevel());
@@ -136,18 +135,17 @@ public class BMSAnalytics {
             }
         }
 
-         //if (!hasUserContext) {
-             //Use device ID as default user ID:
-            //DEFAULT_USER_ID = getDeviceID(context);
-            //setUserIdentity(DEFAULT_USER_ID, true);
-        //}
+         if (!hasUserContext) {
+         //    Use device ID as default user ID:
+            DEFAULT_USER_ID = getDeviceID(context);
+            setUserIdentity(DEFAULT_USER_ID, true);
+         }
 
-	if (collectLocation) {
+	    if (collectLocation) {
+            locationService = MFPAnalyticsLocationListener.getInstance(context);
             BMSAnalytics.collectLocation = collectLocation;
             locationService.init();
         }
-
-        DEFAULT_USER_ID = getDeviceID(context);
 
 
         BMSAnalytics.hasUserContext = hasUserContext;
@@ -160,11 +158,6 @@ public class BMSAnalytics {
         enable();
     }
 
-    public static void setInitialUserIdentity()
-    {
-        Log.d("TAG","Setting Initial User Identity");
-        setUserIdentity(DEFAULT_USER_ID, true);
-    }
     /**
      * Initialize MFPAnalytics API.
      * This must be called before any other MFPAnalytics.* methods

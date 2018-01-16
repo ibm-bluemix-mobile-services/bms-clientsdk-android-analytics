@@ -170,9 +170,7 @@ public class MFPAnalyticsLocationListener implements GoogleApiClient.ConnectionC
 
         updateLocation();
 
-        BMSAnalytics.setInitialUserIdentity();
-
-            startLocationUpdates();
+        startLocationUpdates();
 
     }
 
