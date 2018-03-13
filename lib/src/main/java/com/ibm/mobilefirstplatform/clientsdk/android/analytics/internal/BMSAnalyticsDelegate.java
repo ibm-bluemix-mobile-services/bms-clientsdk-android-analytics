@@ -69,4 +69,7 @@ public class BMSAnalyticsDelegate implements AnalyticsDelegate{
     public String getAppName() {
         return BMSAnalytics.getAppName();
     }
+
+    @Override
+    public void triggerFeedbackMode(){ BMSAnalytics.triggerFeedbackMode(); }
 }

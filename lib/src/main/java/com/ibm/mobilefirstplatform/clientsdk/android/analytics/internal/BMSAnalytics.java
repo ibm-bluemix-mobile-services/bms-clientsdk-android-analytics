@@ -23,6 +23,7 @@ import com.ibm.mobilefirstplatform.clientsdk.android.core.internal.BaseRequest;
 import com.ibm.mobilefirstplatform.clientsdk.android.logger.api.LogPersister;
 import com.ibm.mobilefirstplatform.clientsdk.android.logger.api.Logger;
 import com.ibm.mobilefirstplatform.clientsdk.android.logger.internal.LogPersisterDelegate;
+import com.ibm.mobilefirstplatform.clientsdk.android.analytics.internal.inappfeedback.MFPInAppFeedBackListner;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -88,6 +89,8 @@ public class BMSAnalytics {
     public static final String USER_SWITCH_CATEGORY = "userSwitch";
     public static final String INITIAL_CTX_CATEGORY = "initialCtx";
 
+    protected static Activity currentActivity;
+
     public static String overrideServerHost = null;
     /**
      * Initialize BMSAnalytics API.
@@ -113,6 +116,8 @@ public class BMSAnalytics {
         //Instrument Logger with LogPersisterDelegate
         LogPersisterDelegate logPersisterDelegate = new LogPersisterDelegate();
         Logger.setLogPersister(logPersisterDelegate);
+
+        MFPInAppFeedBackListner.setContext(context);
 
         Analytics.setAnalyticsDelegate(new BMSAnalyticsDelegate());
 
@@ -161,6 +166,8 @@ public class BMSAnalytics {
         BaseRequest.registerInterceptor(new NetworkLoggingInterceptor());
 
         enable();
+
+        MFPInAppFeedBackListner.sendAppFeedback();
     }
 
     public static void setInitialUserIdentity()
@@ -319,7 +326,15 @@ public class BMSAnalytics {
             logger.debug("JSONException encountered logging change in user context: " + e.getMessage());
         }
 
+        MFPInAppFeedBackListner.setUserIdentity(hashedUserID);
         log(metadata);
+    }
+
+    /**
+     * Invoke feedback mode
+     */
+    public static void triggerFeedbackMode(){
+         MFPInAppFeedBackListner.triggerFeedbackMode(currentActivity);
     }
 
     /**
@@ -388,6 +403,7 @@ public class BMSAnalytics {
 
         @Override
         public void onActivityStarted(Activity activity) {
+            currentActivity = activity;
         }
 
         @Override
