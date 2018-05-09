@@ -26,7 +26,7 @@
         android:layout_width="match_parent"
         android:layout_height="60sp"
         android:layout_below="@id/imageView"
-        android:background="#DAE5F1"
+        android:background="#D6D7D7"
         >
 
         <Button
@@ -43,7 +43,7 @@
             android:id="@+id/drawButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/draw_black"
+            android:src="@drawable/ic_draw"
             android:adjustViewBounds="true"
             android:padding="5dp"
             android:scaleType="fitCenter"
@@ -54,7 +54,7 @@
             android:id="@+id/eraseButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/erase_black"
+            android:src="@drawable/ic_erase"
             android:layout_toRightOf="@+id/drawButton"
             android:adjustViewBounds="true"
             android:padding="5dp"
@@ -65,8 +65,19 @@
             android:id="@+id/commentButton"
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
-            android:src="@drawable/comment_black"
+            android:src="@drawable/ic_comment"
             android:layout_toRightOf="@+id/eraseButton"
+            android:adjustViewBounds="true"
+            android:padding="5dp"
+            android:scaleType="fitCenter"
+            />
+
+        <ImageButton
+            android:id="@+id/undoButton"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:src="@drawable/ic_undo"
+            android:layout_toRightOf="@+id/commentButton"
             android:adjustViewBounds="true"
             android:padding="5dp"
             android:scaleType="fitCenter"

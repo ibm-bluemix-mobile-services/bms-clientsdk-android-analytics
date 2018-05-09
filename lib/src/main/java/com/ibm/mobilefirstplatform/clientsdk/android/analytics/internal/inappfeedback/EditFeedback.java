@@ -45,6 +45,7 @@ public class EditFeedback extends Activity{
     private ImageButton drawButton;
     private ImageButton eraseButton;
     private ImageButton commentButton;
+    private ImageButton undoButton;
     private EditText editText;
     private TextView commentTextLable;
     private TextView countTextLable;
@@ -95,6 +96,7 @@ public class EditFeedback extends Activity{
         drawButton = (ImageButton) findViewById(R.id.drawButton);
         eraseButton = (ImageButton) findViewById(R.id.eraseButton);
         commentButton = (ImageButton) findViewById(R.id.commentButton);
+        undoButton = (ImageButton) findViewById(R.id.undoButton);
         editText = (EditText) findViewById(R.id.edit_text);
         commentTextLable = (TextView) findViewById(R.id.comment_text);
         countTextLable = (TextView) findViewById(R.id.count_text);
@@ -225,14 +227,14 @@ public class EditFeedback extends Activity{
             public void onClick(View arg0) {
                 //Change the icon
                 if(!drawToggle && allowClick){
-                    drawButton.setImageResource(R.drawable.draw_yellow);
+                    drawButton.setImageResource(R.drawable.ic_drawactive);
                     drawToggle=true;
-                    eraseButton.setImageResource(R.drawable.erase_black);
+                    eraseButton.setImageResource(R.drawable.ic_erase);
                     eraseToggle=false;
-                    commentButton.setImageResource(R.drawable.comment_black);
+                    commentButton.setImageResource(R.drawable.ic_comment);
                     commentToggle=false;
                 }else{
-                    drawButton.setImageResource(R.drawable.draw_black);
+                    drawButton.setImageResource(R.drawable.ic_draw);
                     drawToggle=false;
                 }
             }
@@ -243,14 +245,14 @@ public class EditFeedback extends Activity{
             public void onClick(View arg0) {
                 //Change the icon
                 if(!eraseToggle && allowClick){
-                    eraseButton.setImageResource(R.drawable.erase_yellow);
+                    eraseButton.setImageResource(R.drawable.ic_eraseactive);
                     eraseToggle=true;
-                    drawButton.setImageResource(R.drawable.draw_black);
+                    drawButton.setImageResource(R.drawable.ic_draw);
                     drawToggle=false;
-                    commentButton.setImageResource(R.drawable.comment_black);
+                    commentButton.setImageResource(R.drawable.ic_comment);
                     commentToggle=false;
                 }else{
-                    eraseButton.setImageResource(R.drawable.erase_black);
+                    eraseButton.setImageResource(R.drawable.ic_erase);
                     eraseToggle=false;
                 }
             }
@@ -261,18 +263,25 @@ public class EditFeedback extends Activity{
             public void onClick(View arg0) {
                 //Change the icon
                 if(!commentToggle && allowClick){
-                    commentButton.setImageResource(R.drawable.comment_yellow);
+                    commentButton.setImageResource(R.drawable.ic_commentactive);
                     commentToggle=true;
-                    drawButton.setImageResource(R.drawable.draw_black);
+                    drawButton.setImageResource(R.drawable.ic_draw);
                     drawToggle=false;
-                    eraseButton.setImageResource(R.drawable.erase_black);
+                    eraseButton.setImageResource(R.drawable.ic_erase);
                     eraseToggle=false;
                 }else{
                     if(allowClick){
-                        commentButton.setImageResource(R.drawable.comment_black);
+                        commentButton.setImageResource(R.drawable.ic_comment);
                         commentToggle=false;
                     }
                 }
+            }
+        });
+
+        undoButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //imageView.Undo();
             }
         });
 
